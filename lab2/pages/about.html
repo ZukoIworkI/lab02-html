@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про мене - Мій Проєкт</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-flex">
+            <div class="logo">МійСайт</div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Головна</a></li>
+                    <li><a href="about.html" class="active">Про мене</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="about-hero">
+            <h1>Про автора проєкту</h1>
+            <p>Тут ви можете дізнатися більше про мої захоплення та переглянути медіа-матеріали.</p>
+        </section>
+
+        <section class="two-column">
+            <div class="column-text">
+                <h2>Мої інтереси</h2>
+                <p>Я вивчаю веб-розробку, зокрема основи HTML та CSS. Ця сторінка демонструє вміння працювати з мультимедійними елементами.</p>
+                
+                <h3>Музика для навчання</h3>
+                <p>Цей аудіофайл додано як приклад роботи з тегом audio:</p>
+                <audio controls>
+                    <source src="../assets/media/audio.mp3" type="audio/mpeg">
+                    Ваш браузер не підтримує аудіо.
+                </audio>
+            </div>
+            
+            <div class="column-media">
+                <h3>Відео презентація</h3>
+                <div class="video-wrapper">
+                    <video controls poster="../assets/img/video-preview.jpg">
+                        <source src="../assets/media/video.mp4" type="video/mp4">
+                        Ваш браузер не підтримує відео.
+                    </video>
+                </div>
+                <p class="caption">Підпис: Демонстраційне відео про роботу CSS</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Практична робота. Виконав: [Ваше Ім'я]</p>
+        </div>
+    </footer>
+</body>
+</html>

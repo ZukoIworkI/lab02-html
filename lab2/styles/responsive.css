@@ -1,0 +1,21 @@
+/* --- Адаптація для планшетів та смартфонів --- */
+@media (max-width: 768px) {
+    .header-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-list {
+        gap: 10px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    /* Таблиця стає прокручуваною, якщо не влізає */
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
