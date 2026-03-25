@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мій Проєкт - Головна</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/responsive.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
     <header class="site-header">
@@ -22,50 +22,30 @@
     </header>
 
     <main class="container">
-        <section class="hero-card">
+        <section class="hero-card" style="text-align: center;">
             <h1>Вітаю на моєму сайті!</h1>
-            <p>Це практична робота №2 з основ CSS. Тут ви знайдете приклади оформлення тексту, таблиць та медіа.</p>
+            
+            <img src="assets/image/1.jpg" alt="Головне фото" style="max-width: 100%; border-radius: 15px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            
+            <p>Це практична робота №2 з основ CSS. Тут ви знайдете приклади оформлення тексту, таблиць та медіа-контенту.</p>
         </section>
 
         <section>
-            <h2>Наші переваги</h2>
-            <ul>
-                <li>Сучасний дизайн за допомогою CSS3</li>
-                <li>Адаптивність під мобільні пристрої</li>
-                <li>Чистий та зрозумілий код</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Таблиця характеристик</h2>
-            <table>
-                <caption>Порівняння технологій</caption>
-                <thead>
-                    <tr>
-                        <th>Технологія</th>
-                        <th>Призначення</th>
-                        <th>Складність</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>HTML5</td>
-                        <td>Структура сторінки</td>
-                        <td>Низька</td>
-                    </tr>
-                    <tr>
-                        <td>CSS3</td>
-                        <td>Стилізація та дизайн</td>
-                        <td>Середня</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Мої навички</h2>
+            <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                <ul style="flex: 1;">
+                    <li>Робота з репозиторіями <strong>GitHub</strong></li>
+                    <li>Верстка сторінок на <strong>HTML5</strong></li>
+                    <li>Стилізація елементів через <strong>CSS3</strong></li>
+                </ul>
+                <img src="assets/image/2.jpg" alt="Навички" style="max-width: 250px; border-radius: 10px;">
+            </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2024 Практична робота. Всі права захищені.</p>
+            <p>&copy; 2026 Практична робота. Виконав: Данило</p>
         </div>
     </footer>
 </body>
