@@ -3,54 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Про мене - Мій Проєкт</title>
+    <title>Про нас - Мой сайт</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/responsive.css">
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-flex">
-            <div class="logo">МійСайт</div>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="../index.html">Головна</a></li>
-                    <li><a href="about.html" class="active">Про мене</a></li>
-                    <li><a href="contact.html">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="header">
+        <div class="logo">МійСайт</div>
+        <button class="menu-btn" aria-expanded="false" aria-label="Відкрити меню">☰</button>
+        <nav class="nav-menu">
+            <a href="../index.html" class="nav-link">Головна</a>
+            <a href="about.html" class="nav-link">Про нас</a>
+            <a href="contact.html" class="nav-link">Контакти</a>
+            <button class="theme-toggle">Тема 🌓</button>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="about-hero">
-            <h1>Про автора проєкту</h1>
-            <p>На цій сторінці ви можете переглянути мої відео-матеріали.</p>
+    <main>
+        <section class="about">
+            <h1>Про мене</h1>
+            <p>Я вивчаю HTML, CSS та JavaScript.</p>
+            <video width="100%" controls>
+                <source src="../assets/video/IMG_0479.MOV" type="video/mp4">
+            </video>
+
+            <div class="voice-message">
+                <div class="voice-avatar">📱</div>
+                <div class="voice-player">
+                    <p class="voice-title">Голосове повідомлення</p>
+                    <audio controls>
+                        <source src="../assets/audio/iphone-ringtone.mp3" type="audio/mpeg">
+                        Ваш браузер не підтримує аудіо.
+                    </audio>
+                </div>
+            </div>
         </section>
 
-        <section class="two-column">
-            <div class="column-text">
-                <h2>Мої інтереси</h2>
-                <p>Я захоплююсь автомобілями та сучасними технологіями. Нижче представлено відео мого авто.</p>
-            </div>
-            
-            <div class="column-media">
-                <h3>Відео презентація</h3>
-                <div class="video-wrapper">
-                    <video controls poster="../assets/image/3.jpg" style="width: 100%; border-radius: 12px; background: #000;">
-                        <source src="../assets/video/IMG_0479.MOV" type="video/quicktime">
-                        <source src="../assets/video/IMG_0479.MOV" type="video/mp4">
-                        Ваш браузер не підтримує відео.
-                    </video>
+        <section class="faq">
+            <h2>Часті питання (FAQ)</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Які технології я використовую?</button>
+                    <div class="accordion-content" hidden>
+                        <p>Наразі це HTML5, CSS3 та Vanilla JavaScript (без бібліотек).</p>
+                    </div>
                 </div>
-                <p class="caption">Демонстрація автомобіля (Формат MOV)</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">Як працює цей акордеон?</button>
+                    <div class="accordion-content" hidden>
+                        <p>Він використовує подію click у JS та змінює атрибут hidden.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Практична робота. Виконав: Данило</p>
-        </div>
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> МійСайт. Всі права захищено.</p>
     </footer>
+    <button class="back-to-top" aria-label="Вгору">↑</button>
 </body>
 </html>

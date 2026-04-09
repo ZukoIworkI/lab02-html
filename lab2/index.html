@@ -3,50 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мій Проєкт - Головна</title>
+    <title>Головна - Мой сайт</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-flex">
-            <div class="logo">МійСайт</div>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="index.html" class="active">Головна</a></li>
-                    <li><a href="pages/about.html">Про мене</a></li>
-                    <li><a href="pages/contact.html">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="header">
+        <div class="logo">МійСайт</div>
+        <button class="menu-btn" aria-expanded="false" aria-label="Відкрити меню">☰</button>
+        
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="pages/about.html" class="nav-link">Про нас</a>
+            <a href="pages/contact.html" class="nav-link">Контакти</a>
+            <button class="theme-toggle">Тема 🌓</button>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="hero-card" style="text-align: center;">
-            <h1>Вітаю на моєму сайті!</h1>
-            
-            <img src="assets/image/1.jpg" alt="Головне фото" style="max-width: 100%; border-radius: 15px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            
-            <p>Це практична робота №2 з основ CSS. Тут ви знайдете приклади оформлення тексту, таблиць та медіа-контенту.</p>
+    <main>
+        <section class="hero">
+            <h1>Вітаю на моєму сайті</h1>
+            <p>Тут реалізовано логіку на JavaScript.</p>
         </section>
 
-        <section>
-            <h2>Мої навички</h2>
-            <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                <ul style="flex: 1;">
-                    <li>Робота з репозиторіями <strong>GitHub</strong></li>
-                    <li>Верстка сторінок на <strong>HTML5</strong></li>
-                    <li>Стилізація елементів через <strong>CSS3</strong></li>
-                </ul>
-                <img src="assets/image/2.jpg" alt="Навички" style="max-width: 250px; border-radius: 10px;">
+        <section class="portfolio">
+            <h2>Мої роботи</h2>
+            <div class="filters">
+                <button class="filter-btn is-active" data-filter="all">Усі</button>
+                <button class="filter-btn" data-filter="design">Дизайн</button>
+                <button class="filter-btn" data-filter="code">Код</button>
+            </div>
+
+            <div class="cards-grid">
+                <div class="filterable-card card" data-category="design">
+                    <img src="assets/image/1.jpg" alt="Робота 1">
+                    <h3>Проєкт 1</h3>
+                    <button class="modal-trigger btn" data-target="modal-1">Детальніше</button>
+                </div>
+                <div class="filterable-card card" data-category="code">
+                    <img src="assets/image/2.jpg" alt="Робота 2">
+                    <h3>Проєкт 2</h3>
+                    <button class="modal-trigger btn" data-target="modal-2">Детальніше</button>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Практична робота. Виконав: Данило</p>
-        </div>
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> МійСайт. Всі права захищено.</p>
     </footer>
+
+    <button class="back-to-top" aria-label="Вгору">↑</button>
+
+    <div class="modal" id="modal-1">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Деталі Проєкту 1</h2>
+            <p>Тут опис першого проєкту.</p>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal-2">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Деталі Проєкту 2</h2>
+            <p>Тут опис другого проєкту.</p>
+        </div>
+    </div>
 </body>
 </html>

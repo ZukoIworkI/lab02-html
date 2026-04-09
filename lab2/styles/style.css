@@ -1,110 +1,156 @@
+/* Базові змінні для світлої теми */
 :root {
-    --color-primary: #1d4e89;
-    --color-accent: #ffb703;
-    --color-bg: #f7f9fc;
-    --color-surface: #ffffff;
-    --color-text: #1f2937;
-    --color-border: #d9e2ec;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #007bff;
+    --nav-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #dddddd;
+}
+
+/* Змінні для темної теми (П.4) */
+body.theme-dark {
+    --bg-color: #1a1a1a;
+    --text-color: #f1f1f1;
+    --primary-color: #4da3ff;
+    --nav-bg: #2d2d2d;
+    --card-bg: #2d2d2d;
+    --border-color: #444444;
 }
 
 body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
+    padding: 0;
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-    width: min(1100px, calc(100% - 32px));
-    margin: 0 auto;
-}
-
-/* ШАПКА */
-.site-header {
-    background-color: var(--color-primary);
-    padding: 1rem 0;
-    color: white;
-}
-
-.header-flex {
+/* Шапка та Навігація */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
 }
+.nav-menu { display: flex; gap: 15px; align-items: center; }
+.nav-link { text-decoration: none; color: var(--text-color); font-weight: bold; }
+.nav-link:hover { color: var(--primary-color); }
 
-.nav-list {
-    display: flex;
-    list-style: none;
-    gap: 20px;
+/* Підсвічування активної сторінки (П.2) */
+.nav-link.is-active { color: var(--primary-color); text-decoration: underline; }
+
+/* Кнопка меню (хована на ПК) */
+.menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+
+/* Кнопка теми */
+.theme-toggle { background: none; border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+
+main { padding: 2rem; max-width: 1000px; margin: 0 auto; min-height: 70vh; }
+.footer { text-align: center; padding: 1rem; background-color: var(--nav-bg); border-top: 1px solid var(--border-color); }
+
+/* Кнопка Вгору (П.5) */
+.back-to-top {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--primary-color); color: white;
+    border: none; border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 20px; cursor: pointer;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
 }
+.back-to-top.is-visible { opacity: 1; visibility: visible; }
 
-.nav-list a {
-    color: white;
-    text-decoration: none;
+/* Фільтри та Картки (П.7) */
+.filters { margin-bottom: 20px; }
+.filter-btn { padding: 8px 15px; margin-right: 10px; cursor: pointer; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); }
+.filter-btn.is-active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+.cards-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.card { border: 1px solid var(--border-color); padding: 15px; background: var(--card-bg); border-radius: 8px; width: 250px; text-align: center; }
+.card img { max-width: 100%; height: auto; border-radius: 4px; }
+.btn { background: var(--primary-color); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+
+/* Акордеон (П.6) */
+.accordion-item { border: 1px solid var(--border-color); margin-bottom: 10px; border-radius: 5px; overflow: hidden; }
+.accordion-header { width: 100%; text-align: left; padding: 15px; background: var(--card-bg); border: none; cursor: pointer; color: var(--text-color); font-size: 1rem; font-weight: bold; }
+.accordion-header:hover { background: var(--nav-bg); }
+.accordion-content { padding: 15px; border-top: 1px solid var(--border-color); background: var(--bg-color); }
+/* Стрілочка для акордеону */
+.accordion-header::after { content: ' ▼'; float: right; }
+.accordion-header.is-active::after { content: ' ▲'; }
+
+/* Модальне вікно (П.8) */
+.modal {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
+.modal.is-open { display: flex; align-items: center; justify-content: center; }
+.modal-content { background-color: var(--bg-color); padding: 20px; border-radius: 8px; width: 80%; max-width: 500px; position: relative; }
+.modal-close { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; background: none; border: none; color: var(--text-color); }
 
-/* СЕКЦІЇ */
-section {
-    background: var(--color-surface);
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+/* Форма (П.9) */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px;
+    background: var(--bg-color); color: var(--text-color); box-sizing: border-box;
 }
-
-/* СТИЛІ ЗОБРАЖЕНЬ */
-img {
+.counter { text-align: right; font-size: 0.8rem; margin-top: 5px; color: gray; }
+.text-danger { color: red; font-weight: bold; }
+.input-invalid { border-color: red !important; outline: none; }
+.success-alert { background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; border: 1px solid #c3e6cb; }
+/* =========================================
+   Голосове повідомлення (Рингтон)
+   ========================================= */
+.voice-message {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e5e5ea; /* Колір бульбашки (світла тема) */
+    padding: 10px 15px;
+    border-radius: 20px;
+    border-bottom-left-radius: 5px; /* Хвостик повідомлення */
     max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-}
-
-.main-banner {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
     margin: 20px 0;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.side-img {
-    max-width: 300px;
-    margin-top: 15px;
+/* Адаптація під темну тему, яку ми робили раніше */
+body.theme-dark .voice-message {
+    background-color: #3a3a3c;
 }
 
-/* FLEXBOX ДЛЯ КОЛОНОК */
-.two-column {
+.voice-avatar {
+    font-size: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    min-width: 40px;
+    height: 40px;
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.column-text, .column-media {
-    flex: 1;
-    min-width: 300px;
-}
-
-/* ВІДЕО */
-video {
-    width: 100%;
-    border-radius: 8px;
-    background: #000;
-}
-
-/* ТАБЛИЦЯ */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid var(--color-border);
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background: var(--color-primary);
+    justify-content: center;
+    align-items: center;
     color: white;
+}
+
+.voice-player {
+    display: flex;
+    flex-direction: column;
+}
+
+.voice-title {
+    margin: 0 0 5px 5px;
+    font-size: 12px;
+    color: #8e8e93;
+    font-weight: bold;
+}
+
+/* Зменшуємо стандартний плеєр браузера, щоб був акуратнішим */
+.voice-player audio {
+    height: 35px;
+    width: 230px;
+    outline: none;
 }

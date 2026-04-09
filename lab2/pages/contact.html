@@ -2,46 +2,53 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Контакти</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - Мой сайт</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/responsive.css">
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-flex">
-            <div class="logo">МійСайт</div>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="../index.html">Головна</a></li>
-                    <li><a href="about.html">Про мене</a></li>
-                    <li><a href="contact.html" class="active">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="header">
+        <div class="logo">МійСайт</div>
+        <button class="menu-btn" aria-expanded="false" aria-label="Відкрити меню">☰</button>
+        <nav class="nav-menu">
+            <a href="../index.html" class="nav-link">Головна</a>
+            <a href="about.html" class="nav-link">Про нас</a>
+            <a href="contact.html" class="nav-link">Контакти</a>
+            <button class="theme-toggle">Тема 🌓</button>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="form-container">
-            <h2>Зворотній зв'язок</h2>
-            <form>
+    <main>
+        <section class="contact">
+            <h1>Зв'язатися зі мною</h1>
+            
+            <form id="contact-form" class="form">
                 <div class="form-group">
-                    <label for="name">Ваше ім'я:</label>
-                    <input type="text" id="name" required placeholder="Введіть ім'я">
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" name="name" placeholder="Введіть ваше ім'я">
                 </div>
+                
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" placeholder="name@example.com">
                 </div>
+                
                 <div class="form-group">
-                    <label>Ціль звернення:</label>
-                    <select>
-                        <option>Запитання</option>
-                        <option>Пропозиція</option>
-                    </select>
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Ваше повідомлення..."></textarea>
+                    <div id="char-counter" class="counter">0 / 500</div>
                 </div>
-                <button type="submit">Відправити</button>
+                
+                <button type="submit" class="btn">Відправити</button>
             </form>
         </section>
     </main>
+
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> МійСайт. Всі права захищено.</p>
+    </footer>
+    <button class="back-to-top" aria-label="Вгору">↑</button>
 </body>
 </html>

@@ -1,21 +1,38 @@
-/* --- Адаптація для планшетів та смартфонів --- */
-@media (max-width: 768px) {
-    .header-flex {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-list {
-        gap: 10px;
-    }
-
-    section {
-        padding: 15px;
-    }
-
-    /* Таблиця стає прокручуваною, якщо не влізає */
-    table {
+/* Мобільні пристрої (ширина екрану до 768px) */
+@media screen and (max-width: 768px) {
+    /* Показуємо кнопку бургера */
+    .menu-btn {
         display: block;
-        overflow-x: auto;
+    }
+
+    /* Ховаємо меню за замовчуванням */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Висота шапки */
+        left: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+
+    /* Клас, який додає JS для показу меню */
+    .nav-menu.is-open {
+        display: flex;
+    }
+
+    /* Адаптація сітки карток */
+    .cards-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
     }
 }
