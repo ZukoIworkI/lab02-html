@@ -10,11 +10,12 @@ function init() {
 
     // Специфічні (працюватимуть лише там, де є відповідний HTML)
     initAccordion();
-    initFilters();
     initModal();
     initContactForm();
+    
+    // НОВЕ: Запуск нашого динамічного каталогу
+    initCatalogPage();
 }
-
 // ---------------------------------------------------------
 // 2. Підсвічування активної сторінки в навігації
 // ---------------------------------------------------------
@@ -324,4 +325,168 @@ function clearError(inputElement) {
         errorEl.hidden = true;
     }
     inputElement.classList.remove('input-invalid');
+}
+// =========================================================
+// Практична 9-10: Асинхронний каталог, Fetch, Фільтри, Обране
+// =========================================================
+
+let catalogData = []; // Сюди запишемо дані з JSON
+
+async function initCatalogPage() {
+    const catalogGrid = document.getElementById('catalog-grid');
+    if (!catalogGrid) return; // Якщо ми не на сторінці з каталогом - виходимо
+
+    const loadingState = document.getElementById('catalog-loading');
+    const errorState = document.getElementById('catalog-error');
+
+    try {
+        // 1. Асинхронне завантаження (fetch)
+        const response = await fetch('data/items.json');
+        if (!response.ok) throw new Error('Не вдалося завантажити дані');
+        
+        catalogData = await response.json();
+        
+        // Ховаємо завантаження, показуємо грід
+        loadingState.hidden = true;
+        catalogGrid.hidden = false;
+
+        // 2. Рендеримо картки
+        renderCatalog(catalogData);
+
+        // 3. Ініціалізуємо слухачі для пошуку, фільтрів та сортування
+        initCatalogControls();
+
+    } catch (error) {
+        console.error(error);
+        loadingState.hidden = true;
+        errorState.hidden = false;
+    }
+}
+
+// Функція малювання карток
+function renderCatalog(items) {
+    const catalogGrid = document.getElementById('catalog-grid');
+    const emptyState = document.getElementById('catalog-empty');
+    
+    catalogGrid.innerHTML = ''; // Очищаємо перед новим малюванням
+    
+    if (items.length === 0) {
+        catalogGrid.hidden = true;
+        emptyState.hidden = false;
+        return;
+    }
+
+    catalogGrid.hidden = false;
+    emptyState.hidden = true;
+
+    // Зчитуємо збережені "улюблені" з localStorage
+    const favorites = JSON.parse(localStorage.getItem('myFavorites') || '[]');
+
+    items.forEach(item => {
+        const isFav = favorites.includes(item.id);
+        
+        // Генеруємо медіа (фото або відео)
+        let mediaHTML = '';
+        if (item.mediaType === 'video') {
+            mediaHTML = `<video controls src="${item.video}"></video>`;
+        } else {
+            mediaHTML = `<img src="${item.image}" alt="${item.title}">`;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="card-header">
+                ${mediaHTML}
+                <button class="fav-btn ${isFav ? 'is-fav' : ''}" data-id="${item.id}">
+                    ${isFav ? '❤️' : '🤍'}
+                </button>
+            </div>
+            <h3>${item.title}</h3>
+            <p style="font-size: 0.9rem; color: gray;">Категорія: ${item.category}</p>
+            <p>${item.description}</p>
+            <button class="btn" onclick="alert('Деталі для: ${item.title}')">Детальніше</button>
+        `;
+        catalogGrid.appendChild(card);
+    });
+
+    // Вішаємо події на нові кнопки "В обране"
+    document.querySelectorAll('.fav-btn').forEach(btn => {
+        btn.addEventListener('click', toggleFavorite);
+    });
+}
+
+// Функція додавання/видалення з обраного (LocalStorage)
+function toggleFavorite(e) {
+    const btn = e.currentTarget;
+    const id = btn.dataset.id;
+    let favorites = JSON.parse(localStorage.getItem('myFavorites') || '[]');
+
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(favId => favId !== id);
+        btn.classList.remove('is-fav');
+        btn.textContent = '🤍';
+    } else {
+        favorites.push(id);
+        btn.classList.add('is-fav');
+        btn.textContent = '❤️';
+    }
+    
+    localStorage.setItem('myFavorites', JSON.stringify(favorites));
+}
+
+// Обробка пошуку, фільтрів та сортування
+function initCatalogControls() {
+    const searchInput = document.getElementById('search-input');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sort-select');
+
+    let currentQuery = '';
+    let currentCategory = 'all';
+    let currentSort = 'default';
+
+    function applyAll() {
+        // 1. Фільтрація (Пошук + Категорія)
+        let result = catalogData.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(currentQuery.toLowerCase()) || 
+                                  item.description.toLowerCase().includes(currentQuery.toLowerCase());
+            const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+            return matchesSearch && matchesCategory;
+        });
+
+        // 2. Сортування
+        if (currentSort === 'title-asc') {
+            result.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (currentSort === 'title-desc') {
+            result.sort((a, b) => b.title.localeCompare(a.title));
+        }
+
+        renderCatalog(result);
+    }
+
+    // Слухач пошуку
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentQuery = e.target.value;
+            applyAll();
+        });
+    }
+
+    // Слухач категорій
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            filterBtns.forEach(b => b.classList.remove('is-active'));
+            e.target.classList.add('is-active');
+            currentCategory = e.target.dataset.filter;
+            applyAll();
+        });
+    });
+
+    // Слухач сортування
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            applyAll();
+        });
+    }
 }

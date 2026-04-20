@@ -27,13 +27,31 @@
             <p>Тут реалізовано логіку на JavaScript.</p>
         </section>
 
-        <section class="portfolio">
+       <section class="portfolio" id="portfolio-section">
             <h2>Мої роботи</h2>
-            <div class="filters">
-                <button class="filter-btn is-active" data-filter="all">Усі</button>
-                <button class="filter-btn" data-filter="design">Дизайн</button>
-                <button class="filter-btn" data-filter="code">Код</button>
+            
+            <div class="catalog-controls">
+                <input type="text" id="search-input" placeholder="Пошук за назвою..." class="search-input">
+                
+                <div class="filters" id="catalog-filters">
+                    <button class="filter-btn is-active" data-filter="all">Усі</button>
+                    <button class="filter-btn" data-filter="design">Дизайн</button>
+                    <button class="filter-btn" data-filter="code">Код</button>
+                </div>
+
+                <select id="sort-select" class="sort-select">
+                    <option value="default">За замовчуванням</option>
+                    <option value="title-asc">За алфавітом (А-Я)</option>
+                    <option value="title-desc">За алфавітом (Я-А)</option>
+                </select>
             </div>
+
+            <div id="catalog-loading" class="catalog-state">⏳ Завантаження даних...</div>
+            <div id="catalog-error" class="catalog-state text-danger" hidden>❌ Помилка завантаження даних.</div>
+            <div id="catalog-empty" class="catalog-state" hidden>📭 За вашим запитом нічого не знайдено.</div>
+
+            <div class="cards-grid" id="catalog-grid" hidden></div>
+        </section>
 
             <div class="cards-grid">
                 <div class="filterable-card card" data-category="design">

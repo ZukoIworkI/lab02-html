@@ -154,3 +154,63 @@ body.theme-dark .voice-message {
     width: 230px;
     outline: none;
 }
+/* --- Нові стилі для Каталогу (Практична 9-10) --- */
+.catalog-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-input, .sort-select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-width: 200px;
+}
+
+.catalog-state {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    position: relative;
+}
+
+.fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.fav-btn:hover { transform: scale(1.1); }
+.fav-btn.is-fav { color: red; }
+.fav-btn:not(.is-fav) { color: gray; }
+
+.card video {
+    width: 100%;
+    border-radius: 4px;
+    background: #000;
+}

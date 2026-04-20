@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "title": "Дизайн лендингу",
+    "category": "design",
+    "description": "Сучасний дизайн лендингу для IT-компанії.",
+    "mediaType": "image",
+    "image": "assets/image/1.jpg",
+    "video": ""
+  },
+  {
+    "id": "2",
+    "title": "Вебзастосунок на JS",
+    "category": "code",
+    "description": "Інтерактивний додаток з використанням API.",
+    "mediaType": "image",
+    "image": "assets/image/2.jpg",
+    "video": ""
+  },
+  {
+    "id": "3",
+    "title": "Мій улюблений персонаж",
+    "category": "design",
+    "description": "Відеопрезентація мого улюбленого героя з крутим монтажем.",
+    "mediaType": "video",
+    "video": "assets/video/my-new-project.mp4",
+    "image": ""
+  }
+]
