@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Головна - Мой сайт</title>
+    <title>Головна - Мій сайт</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/responsive.css">
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -24,19 +24,35 @@
     <main>
         <section class="hero">
             <h1>Вітаю на моєму сайті</h1>
-            <p>Тут реалізовано логіку на JavaScript.</p>
+            <p>Тут реалізовано логіку взаємодії з API через JavaScript.</p>
         </section>
 
-       <section class="portfolio" id="portfolio-section">
-            <h2>Мої роботи</h2>
+        <section class="admin-panel container">
+            <h2>Керування базою даних</h2>
+            <form id="item-form" class="form-container">
+                <input type="text" name="title" placeholder="Назва курсу" required>
+                <input type="number" name="price" placeholder="Ціна (грн)" required>
+                <select name="category">
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="design">Design</option>
+                </select>
+                <button type="submit" class="btn btn-add">Додати в базу</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="portfolio" id="portfolio-section">
+            <h2>Наші курси та проєкти</h2>
             
             <div class="catalog-controls">
                 <input type="text" id="search-input" placeholder="Пошук за назвою..." class="search-input">
                 
                 <div class="filters" id="catalog-filters">
                     <button class="filter-btn is-active" data-filter="all">Усі</button>
-                    <button class="filter-btn" data-filter="design">Дизайн</button>
-                    <button class="filter-btn" data-filter="code">Код</button>
+                    <button class="filter-btn" data-filter="frontend">Frontend</button>
+                    <button class="filter-btn" data-filter="backend">Backend</button>
                 </div>
 
                 <select id="sort-select" class="sort-select">
@@ -46,25 +62,12 @@
                 </select>
             </div>
 
-            <div id="catalog-loading" class="catalog-state">⏳ Завантаження даних...</div>
-            <div id="catalog-error" class="catalog-state text-danger" hidden>❌ Помилка завантаження даних.</div>
-            <div id="catalog-empty" class="catalog-state" hidden>📭 За вашим запитом нічого не знайдено.</div>
+            <div id="catalog-loading" class="catalog-state">⏳ Завантаження даних з сервера...</div>
+            <div id="catalog-error" class="catalog-state text-danger" hidden>❌ Помилка з'єднання з сервером!</div>
+            <div id="catalog-empty" class="catalog-state" hidden>📭 Записів не знайдено.</div>
 
-            <div class="cards-grid" id="catalog-grid" hidden></div>
-        </section>
-
-            <div class="cards-grid">
-                <div class="filterable-card card" data-category="design">
-                    <img src="assets/image/1.jpg" alt="Робота 1">
-                    <h3>Проєкт 1</h3>
-                    <button class="modal-trigger btn" data-target="modal-1">Детальніше</button>
+            <div class="cards-grid" id="catalog-grid">
                 </div>
-                <div class="filterable-card card" data-category="code">
-                    <img src="assets/image/2.jpg" alt="Робота 2">
-                    <h3>Проєкт 2</h3>
-                    <button class="modal-trigger btn" data-target="modal-2">Детальніше</button>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -77,17 +80,10 @@
     <div class="modal" id="modal-1">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <h2>Деталі Проєкту 1</h2>
-            <p>Тут опис першого проєкту.</p>
+            <h2>Деталі Проєкту</h2>
+            <p>Тут опис проєкту з бази даних.</p>
         </div>
     </div>
-    
-    <div class="modal" id="modal-2">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h2>Деталі Проєкту 2</h2>
-            <p>Тут опис другого проєкту.</p>
-        </div>
-    </div>
+
 </body>
 </html>

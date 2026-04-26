@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "title": "Тестовий курс",
+      "price": 100,
+      "category": "frontend"
+    },
+    {
+      "title": "кп",
+      "price": 444,
+      "category": "frontend",
+      "id": "MqLnAziqrQA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
